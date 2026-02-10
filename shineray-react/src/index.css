@@ -1,0 +1,17 @@
+:root {
+  font-family: 'Montserrat', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #121212;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}

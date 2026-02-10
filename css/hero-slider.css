@@ -1,0 +1,95 @@
+/* Estilos do Banner Principal (Hero Slider) */
+.hero-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: transparent; /* Remove o fundo preto fixo */
+    height: auto; /* Altura automática baseada no conteúdo */
+}
+
+.hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 1;
+}
+
+.hero-slide.active {
+    position: relative; /* O slide ativo agora define a altura real do banner */
+    opacity: 1;
+    z-index: 2;
+}
+
+.slide-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-width: 100%;
+}
+
+/* Remover os ajustes de altura antigos para mobile */
+@media (max-width: 768px) {
+    .hero-slider {
+        height: auto;
+        min-height: unset;
+    }
+}
+
+.hero-slide .container {
+    position: relative;
+    z-index: 3;
+}
+
+.hero-slide h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+}
+
+.hero-slide p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+}
+
+.hero-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 15px;
+    cursor: pointer;
+    z-index: 10;
+    transition: background-color 0.3s;
+}
+
+.hero-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero-btn.prev {
+    left: 20px;
+}
+
+.hero-btn.next {
+    right: 20px;
+}
+
+@media (max-width: 768px) {
+    .hero-slide h1 {
+        font-size: 2rem;
+    }
+    .hero-slide p {
+        font-size: 1.2rem;
+    }
+    .hero-slider {
+        height: auto;
+    }
+}

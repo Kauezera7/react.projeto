@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shineray Colombo - Detalhes do Produto</title>
+    <meta name="description" content="Confira os detalhes técnicos e ofertas exclusivas da Shineray Colombo.">
+    <!-- METATAGS: Importantes para quando o link é compartilhado no WhatsApp/Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Shineray Colombo - Detalhes do Produto">
+    <meta property="og:description" content="Confira os detalhes técnicos e ofertas exclusivas da Shineray Colombo.">
+    <meta property="og:image" content="">
+    
+    <!-- ESTILOS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/catalog.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- CABEÇALHO: Injetado via JS -->
+    <header id="header-inject"></header>
+
+    <main>
+        <!-- BREADCRUMB (Caminho de Navegação): Ajuda o usuário a saber onde ele está -->
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Início</a>
+                <span class="separator">/</span>
+                <a href="catalog.html">Catálogo</a>
+                <span class="separator">/</span>
+                <span id="breadcrumb-product-name" class="current">Carregando...</span>
+            </nav>
+        </div>
+
+        <!-- CONTAINER DINÂMICO: 
+             Todo o conteúdo abaixo (fotos, preço, ficha técnica) é gerado pelo js/product-detail.js 
+        -->
+        <section id="product-detail-container" class="container">
+            <!-- O JavaScript vai injetar a estrutura aqui dentro -->
+        </section>
+
+        <!-- SEÇÃO DE PRODUTOS RELACIONADOS: Mostra outras motos que o usuário pode gostar -->
+        <section class="container product-grid">
+            <h2>Você também vai gostar</h2>
+            <div id="related-products-container" class="products">
+                <!-- Os produtos relacionados serão injetados aqui pelo JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- RODAPÉ: Injetado via JS -->
+    <footer class="footer" id="footer-inject"></footer>
+
+    <script src="js/layout.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/render-utils.js"></script>
+    <script src="js/products-data.js"></script>
+    <script src="js/product-detail.js"></script>
+</body>
+</html>
