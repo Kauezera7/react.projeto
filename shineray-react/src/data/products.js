@@ -9,6 +9,7 @@ export const productsData = [
         badge: "Popular",
         brand: "SBM", 
         fuel: "Gasolina",
+        colors: ["Preto", "Branco", "Azul"],
         mainImage: "/img/URBAN-150-EFI.webp",
         highlights: [
             { icon: "Zap", text: "Design Urbano" },
@@ -36,6 +37,7 @@ export const productsData = [
         badge: "Destaque",
         brand: "Shineray",
         fuel: "Gasolina",
+        colors: ["Vermelho", "Preto"],
         mainImage: "/img/Storm.webp",
         highlights: [
             { icon: "Bike", text: "Econômica" },
@@ -61,6 +63,7 @@ export const productsData = [
         badge: "Nova",
         brand: "Shineray",
         fuel: "Gasolina",
+        colors: ["Cinza", "Preto"],
         mainImage: "/img/Denver.webp",
         highlights: [
             { icon: "Zap", text: "Ágil na Cidade" },
@@ -79,11 +82,30 @@ export const productsData = [
         badge: "Off-Road",
         brand: "Shineray",
         fuel: "Gasolina",
+        colors: ["Branco", "Vermelho"],
         mainImage: "/img/250F.webp",
         highlights: [
             { icon: "Bike", text: "Todo Terreno" },
             { icon: "Settings", text: "6 Marchas" }
         ],
         specifications: { "Cilindrada": "250 cc", "Potência": "24 cv" }
+    },
+    {
+        id: 5,
+        slug: "shineray-eletrica-teste",
+        name: "Shineray SE-1",
+        category: "scooter",
+        price: "R$ 12.990,00",
+        installment: "12x de R$ 1.082,50",
+        badge: "Ecológica",
+        brand: "Shineray",
+        fuel: "Elétrica",
+        colors: ["Branco", "Azul"],
+        mainImage: "/img/URBAN-150-EFI.webp",
+        highlights: [
+            { icon: "Zap", text: "100% Elétrica" },
+            { icon: "ShieldCheck", text: "Silenciosa" }
+        ],
+        specifications: { "Motor": "2000W", "Autonomia": "60km" }
     }
 ];
