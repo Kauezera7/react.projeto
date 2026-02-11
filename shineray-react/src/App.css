@@ -27,270 +27,50 @@
   width: 100%;
 }
 
-/* NAVBAR - ORDEM E POSICIONAMENTO */
+/* NAVBAR - EFEITO TRANSPARENTE AO ROLAR */
 .navbar {
   height: 80px;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: var(--white);
+  background-color: transparent; /* Transparente no início */
   display: flex;
   align-items: center;
   z-index: 1000;
-  border-bottom: 1px solid #eee;
-  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+  transition: all 0.4s ease;
 }
 
 .navbar.scrolled {
   height: 70px;
+  background-color: rgba(255, 255, 255, 0.95); /* Volta a cor normal com leve transparência */
+  backdrop-filter: blur(10px); /* Efeito de vidro */
+  border-bottom: 1px solid #eee;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo img {
-  height: 40px;
-  width: auto;
-  display: block;
-}
-
+/* Ajuste dos links para serem visíveis no slide */
 .nav-links-desktop {
   display: flex;
-  gap: 30px;
   align-items: center;
+  gap: 30px; /* Adicionado espaçamento aqui */
 }
 
 .nav-links-desktop a {
   text-decoration: none;
-  color: var(--dark);
+  color: var(--dark); /* Se o slide for muito claro, use dark. Se for escuro, mude para white */
   font-weight: 700;
   font-size: 0.9rem;
   transition: color 0.3s;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5); /* Sombra leve para garantir leitura */
 }
 
-.nav-links-desktop a:hover, .nav-links-desktop a.active {
-  color: var(--primary);
-}
-
-.btn-nav {
-  background-color: var(--primary);
-  color: white !important;
-  padding: 10px 20px;
-  border-radius: 50px;
-  transition: background 0.3s;
-}
-
-.btn-nav:hover {
-  background-color: var(--primary-hover);
-}
-
-/* Menu Mobile Toggle */
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--dark);
-}
-
-/* HERO SECTION - CORREÇÃO DE RESPONSIVIDADE */
-.hero {
-  padding: 140px 0 80px;
-  background: radial-gradient(circle at top right, rgba(200, 8, 14, 0.05), transparent);
-  width: 100%;
-}
-
-.hero .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-}
-
-.hero-content h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
-.highlight { color: var(--primary); }
-
-.hero-image img {
-  width: 100%;
-  height: auto;
-  max-width: 550px;
-  display: block;
-  margin: 0 auto;
-}
-
-/* GRIDS E CARDS */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
-  padding: 40px 0;
-}
-
-.product-card {
-  background: white;
-  border-radius: 15px;
-  padding: 20px;
-  border: 1px solid #eee;
-  text-align: left;
-}
-
-.product-card img {
-  width: 100%;
-  margin-bottom: 15px;
-}
-
-/* --- RODAPÉ (FOOTER) - IGUAL AO ORIGINAL --- */
-.footer {
-  background-color: var(--dark);
-  color: var(--white);
-  padding: 60px 0 20px;
-  font-size: 0.9rem;
-  width: 100%;
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  margin-bottom: 40px;
-  text-align: left;
-}
-
-.footer-section h3 {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  color: var(--primary);
-  text-transform: uppercase;
-  font-weight: 700;
-}
-
-.footer-links {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links li {
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  color: #ccc;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.footer-links a:hover {
-  color: var(--primary);
-  padding-left: 5px;
-}
-
-.social-links-footer {
-  display: flex;
-  gap: 15px;
-  justify-content: flex-start;
-}
-
-.social-links-footer a {
-  color: #fff;
-  font-size: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.social-links-footer a:hover {
-  color: var(--primary);
-  transform: translateY(-3px);
-}
-
-.footer-section p {
-  color: #ccc;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.footer-bottom {
-  border-top: 1px solid #333;
-  padding-top: 20px;
-  text-align: center;
-  color: #777;
-  font-size: 0.8rem;
-}
-
-.btn-location {
-  margin-top: 15px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background-color: var(--primary);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.logo-footer {
-  height: 40px;
-  width: auto;
-  margin-bottom: 20px;
-  display: block;
-}
-
-@media (max-width: 768px) {
-  .footer-content {
-    text-align: center;
-  }
-  
-  .footer-section p, .footer-section h3 {
-    justify-content: center;
-  }
-
-  .social-links-footer {
-    justify-content: center;
-  }
-}
-
-/* Menu Mobile Dropdown Style */
-.mobile-menu {
-  position: fixed;
-  top: 80px;
-  left: 0;
-  width: 100%;
-  background: white;
-  padding: 30px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  z-index: 999;
-}
-
-.mobile-menu a {
-  text-decoration: none;
-  color: var(--dark);
-  font-size: 1.2rem;
-  font-weight: 700;
-  border-bottom: 1px solid #f0f0f0;
-  padding-bottom: 10px;
-}
-
-/* AJUSTES DOS CARROSSEIS - TRANSIÇÃO PROFISSIONAL */
+/* BANNER SUBINDO PARA TRÁS DA NAVBAR */
 .hero-slider-container {
   width: 100%;
-  margin-top: 80px;
-  margin-bottom: 0 !important; /* Totalmente grudado */
+  margin-top: 0 !important; /* Removemos os 80px para ele grudar no topo real */
+  margin-bottom: 0 !important;
   overflow: hidden;
   position: relative;
 }
@@ -1226,9 +1006,9 @@
 /* --- ESTILO COMERCIAL PROFISSIONAL --- */
 .catalog-cta-standard {
   background-color: var(--dark);
-  padding: 40px 0;
+  padding: 0 0 0px 0; /* Zerado o topo (primeiro valor) */
   color: white;
-  margin-top: 0 !important; /* Gruda no banner acima */
+  margin-top: 0 !important;
   margin-bottom: 60px;
 }
 
@@ -1279,3 +1059,242 @@
     justify-content: center;
   }
 }
+
+/* RECOLOCANDO ESTRUTURA DA NAV */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--dark);
+}
+
+@media (max-width: 992px) {
+  .nav-links-desktop { display: none; }
+  .mobile-menu-btn { display: block; }
+}
+
+.btn-nav {
+  background-color: transparent !important;
+  color: inherit !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  text-shadow: inherit !important;
+}
+
+.btn-nav:hover {
+  color: var(--primary) !important;
+}
+
+
+/* --- FINAL FIX RODAPE --- */
+.footer {
+  background-color: #121212 !important;
+  color: #fff !important;
+  padding: 80px 0 20px !important;
+  width: 100% !important;
+}
+
+.footer-content {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 40px !important;
+  margin-bottom: 40px !important;
+}
+
+.footer-section {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+
+.footer-links {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.footer-links li {
+  margin-bottom: 12px !important;
+}
+
+.footer-links a {
+  color: #aaa !important;
+  text-decoration: none !important;
+}
+
+@media (max-width: 992px) {
+  .footer-content { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+@media (max-width: 768px) {
+  .footer-content { grid-template-columns: 1fr !important; text-align: center !important; }
+  .footer-section { align-items: center !important; }
+}
+
+
+/* --- RODAP� (FOOTER) - DESIGN ORIGINAL --- */
+.footer {
+    background-color: var(--dark);
+    color: #ffffff;
+    padding: 60px 0 20px;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.footer-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+.social-links-footer {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.social-links-footer a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-links-footer a:hover {
+    color: var(--primary);
+    transform: translateY(-3px);
+}
+
+.footer-section p {
+    color: #ccc;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333;
+    padding-top: 20px;
+    text-align: center;
+    color: #777;
+    font-size: 0.8rem;
+}
+
+.btn-location {
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--primary);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.logo-footer {
+    height: 40px;
+    width: auto;
+    margin-bottom: 20px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        text-align: center;
+    }
+    
+    .footer-section p, .footer-section h3 {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .social-links-footer {
+        justify-content: center;
+    }
+    
+    .footer-links li {
+        text-align: center;
+    }
+}
+
+/* AJUSTE CARROSSEL DE SUGESTOES FINAL */
+.related-section-carousel {
+  padding: 80px 0;
+  border-top: 2px solid #f5f5f5;
+  margin-top: 60px;
+}
+
+.related-carousel-wrapper {
+  margin-top: 40px;
+  position: relative;
+  padding: 0 10px;
+}
+
+.relatedSwiper {
+  padding: 20px 5px 50px !important;
+}
+
+.relatedSwiper .swiper-button-next,
+.relatedSwiper .swiper-button-prev {
+  width: 45px;
+  height: 45px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  color: var(--primary);
+}
+
+.relatedSwiper .swiper-button-next::after,
+.relatedSwiper .swiper-button-prev::after {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+

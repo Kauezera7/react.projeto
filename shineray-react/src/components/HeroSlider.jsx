@@ -40,20 +40,6 @@ const HeroSlider = () => {
           <SwiperSlide key={banner.id}>
             <div className="slide-content">
               <img src={banner.image} alt="Banner Shineray" className="banner-img" />
-              <div className="overlay">
-                <div className="container">
-                  <motion.div 
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="banner-text"
-                  >
-                    <span className="badge">Destaques Shineray</span>
-                    <h1 style={{ fontSize: 'clamp(1.5rem, 5vw, 3.5rem)' }}>A Sua Próxima Moto <br /> <span className="highlight">Está Aqui!</span></h1>
-                    <button className="btn-primary">Ver Catálogo</button>
-                  </motion.div>
-                </div>
-              </div>
             </div>
           </SwiperSlide>
         ))}

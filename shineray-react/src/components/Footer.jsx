@@ -33,9 +33,9 @@ const Footer = () => {
           {/* Coluna 3: Informações de Contato */}
           <div className="footer-section">
             <h3>Contato</h3>
-            <p><Phone size={16} /> {Config.contato.telefone.formatado}</p>
-            <p><Mail size={16} /> {Config.contato.email}</p>
-            <a href={Config.endereco.linkGoogleMaps} className="btn btn-location" target="_blank" rel="noopener noreferrer">
+            <p><Phone size={16} /> <span>{Config.contato.telefone.formatado}</span></p>
+            <p><Mail size={16} /> <span>{Config.contato.email}</span></p>
+            <a href={Config.endereco.linkGoogleMaps} className="btn-location" target="_blank" rel="noopener noreferrer">
               <MapPin size={16} /> Localização
             </a>
           </div>

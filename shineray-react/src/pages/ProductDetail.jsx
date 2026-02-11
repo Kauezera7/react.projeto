@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
 import { 
   MessageCircle, ArrowLeft, ShieldCheck, 
-  Zap, Bike, Fuel, Gauge, Award, CreditCard,
-  Settings, Info, Activity, ClipboardList,
-  Heart
+  Zap, Bike, Fuel, Gauge, CreditCard,
+  Settings, Activity, ClipboardList, Heart
 } from 'lucide-react';
 import { productsData } from '../data/products';
 import { Config } from '../data/config';
 import ProductCard from '../components/ProductCard';
+
+// Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const ProductDetail = () => {
   const { slug } = useParams();
@@ -24,11 +29,10 @@ const ProductDetail = () => {
       setProduct(found);
       setActiveImage(found.mainImage);
       
-      // Filtra 3 motos relacionadas (excluindo a atual)
+      // Sugestões: Filtra motos diferentes da atual e embaralha
       const related = productsData
         .filter(p => p.slug !== slug)
-        .sort(() => 0.5 - Math.random()) // Embaralha para variar as sugestões
-        .slice(0, 3);
+        .sort(() => 0.5 - Math.random());
       setRelatedProducts(related);
       
       window.scrollTo(0, 0);
@@ -50,11 +54,12 @@ const ProductDetail = () => {
           </button>
         </div>
 
-        {/* 1. SEÇÃO PRINCIPAL: IMAGEM E INFOS */}
+        {/* 1. SEÇÃO PRINCIPAL */}
         <div className="pd-main-section">
           <div className="pd-visual">
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
+              key={activeImage}
+              initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               className="pd-image-frame"
             >
@@ -94,7 +99,7 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* 2. SEÇÃO DE DESTAQUES */}
+        {/* 2. DASHBOARD DE DESTAQUES */}
         <section className="pd-highlights-section">
           <div className="section-title-premium">
             <Activity size={24} />
@@ -151,16 +156,32 @@ const ProductDetail = () => {
           </div>
         </section>
 
-        {/* 4. MOTOS QUE VOCÊ PODE GOSTAR (NOVA SEÇÃO) */}
-        <section className="related-section">
+        {/* 4. CARROSSEL DE SUGESTÕES (MAIS PROFISSIONAL) */}
+        <section className="related-section-carousel">
           <div className="section-title-premium">
             <Heart size={24} className="icon-red" />
             <h2>Motos que você <span className="highlight">pode gostar</span></h2>
           </div>
-          <div className="products-grid">
-            {relatedProducts.map((relProduct, index) => (
-              <ProductCard key={relProduct.id} product={relProduct} index={index} />
-            ))}
+          
+          <div className="related-carousel-wrapper">
+            <Swiper
+              modules={[Navigation, Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              navigation
+              autoplay={{ delay: 4000 }}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+              }}
+              className="relatedSwiper"
+            >
+              {relatedProducts.map((relProduct, index) => (
+                <SwiperSlide key={relProduct.id}>
+                  <ProductCard product={relProduct} index={index} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
         </section>
       </div>

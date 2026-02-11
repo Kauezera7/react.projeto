@@ -1,7 +1,7 @@
 import React from 'react';
 import HeroSlider from '../components/HeroSlider';
 import ProductCarousel from '../components/ProductCarousel';
-import { ShieldCheck, CreditCard, Wrench, ChevronRight, ArrowRight } from 'lucide-react';
+import { ShieldCheck, CreditCard, Wrench, ChevronRight, ArrowRight, MapPin, Clock, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Config } from '../data/config';
@@ -12,7 +12,7 @@ const Home = () => {
       {/* 1. BANNER PRINCIPAL */}
       <HeroSlider />
 
-      {/* 2. BARRA DE CTA COMERCIAL PROFISSIONAL */}
+      {/* 2. BARRA DE CTA COMERCIAL */}
       <section className="catalog-cta-standard">
         <div className="container">
           <div className="cta-standard-grid">
@@ -96,6 +96,62 @@ const Home = () => {
                 </a>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. LOCALIZAÇÃO (IGUAL AO ORIGINAL) */}
+      <section id="location" className="location-section">
+        <div className="container">
+          <div className="location-grid">
+            <div className="location-info">
+              <h2>Venha nos <span className="highlight">Visitar</span></h2>
+              <p className="location-desc">Estamos prontos para te atender e apresentar as melhores condições para sua Shineray zero km.</p>
+              
+              <div className="info-list">
+                <div className="info-item">
+                  <div className="info-icon"><MapPin size={20} /></div>
+                  <div className="info-text">
+                    <h3>Endereço</h3>
+                    <p>{Config.endereco.rua}<br />{Config.endereco.bairroCidade}</p>
+                  </div>
+                </div>
+                
+                <div className="info-item">
+                  <div className="info-icon"><Clock size={20} /></div>
+                  <div className="info-text">
+                    <h3>Horário de Atendimento</h3>
+                    <p>Segunda a Sexta: 08h às 18h<br />Sábado: 08h às 13h</p>
+                  </div>
+                </div>
+
+                <div className="info-item">
+                  <div className="info-icon"><Phone size={20} /></div>
+                  <div className="info-text">
+                    <h3>Fale Conosco</h3>
+                    <p>Telefone: {Config.contato.telefone.formatado}<br />WhatsApp: {Config.contato.whatsapp.formatado}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="location-actions">
+                <a href={`https://wa.me/${Config.contato.whatsapp.numero}`} target="_blank" rel="noopener noreferrer" className="btn-whatsapp-location">
+                  Chamar no WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div className="location-map">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3604.417244583163!2d-49.1896898!3d-25.3702179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94dce665123d9a1d%3A0x66f68e0d40523048!2sR.%20Pasteur%2C%20220%20-%20Maracan%C3%A3%2C%20Colombo%20-%20PR%2C%2083408-410!5e0!3m2!1spt-BR!2sbr!4v1738072800000!5m2!1spt-BR!2sbr" 
+                width="100%" 
+                height="450" 
+                style={{ border: 0 }} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
           </div>
         </div>
       </section>
