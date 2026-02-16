@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import ProductDetail from './pages/ProductDetail';
 import Sellers from './pages/Sellers';
+import SellerProfile from './pages/SellerProfile';
 import NotFound from './pages/NotFound';
 import './App.css';
 
@@ -20,23 +21,33 @@ const ScrollToTop = () => {
   return null;
 }
 
+function AppContent() {
+  const location = useLocation();
+  const isConsultorPage = location.pathname.startsWith('/consultor/');
+
+  return (
+    <div className="app-container">
+      <ScrollToTop />
+      {!isConsultorPage && <Header />}
+      <main className={isConsultorPage ? "" : "main-content"}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalogo" element={<Catalog />} />
+          <Route path="/produto/:slug" element={<ProductDetail />} />
+          <Route path="/vendedores" element={<Sellers />} />
+          <Route path="/consultor/:id" element={<SellerProfile />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      {!isConsultorPage && <Footer />}
+    </div>
+  );
+}
+
 function App() {
   return (
     <Router>
-      <div className="app-container">
-        <ScrollToTop />
-        <Header />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/catalogo" element={<Catalog />} />
-            <Route path="/produto/:slug" element={<ProductDetail />} />
-            <Route path="/vendedores" element={<Sellers />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   );
 }
