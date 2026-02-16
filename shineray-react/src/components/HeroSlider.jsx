@@ -37,8 +37,8 @@ const HeroSlider = () => {
         className="mySwiper"
       >
         {banners.map((banner) => (
-          <SwiperSlide key={banner.id}>
-            <div className="slide-content">
+          <SwiperSlide key={banner.id} style={{ height: 'auto' }}>
+            <div className="slide-content" style={{ height: 'auto' }}>
               <img src={banner.image} alt="Banner Shineray" className="banner-img" />
             </div>
           </SwiperSlide>

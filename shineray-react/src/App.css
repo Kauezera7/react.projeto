@@ -134,11 +134,19 @@
 }
 
 @media (max-width: 768px) {
-  .hero-slider-container, .banner-img {
-    height: 60vh;
+  .navbar {
+    background-color: white !important;
+    border-bottom: 1px solid #eee;
   }
-  .banner-text h1 {
-    font-size: 2.5rem;
+  .hero-slider-container {
+    margin-top: 80px !important;
+    height: auto !important;
+    min-height: unset !important;
+  }
+  .banner-img {
+    height: auto !important;
+    width: 100% !important;
+    object-fit: contain !important;
   }
 }
 
@@ -1050,13 +1058,25 @@
 }
 
 @media (max-width: 768px) {
+  .catalog-cta-standard {
+    padding: 30px 0;
+  }
+  .cta-info h3 {
+    font-size: 1.4rem;
+  }
+  .cta-info p {
+    font-size: 0.9rem;
+  }
   .cta-standard-grid {
     flex-direction: column;
     text-align: center;
+    gap: 20px;
   }
   .btn-catalog-red {
     width: 100%;
     justify-content: center;
+    padding: 12px 25px;
+    font-size: 0.95rem;
   }
 }
 
@@ -1068,26 +1088,126 @@
   width: 100%;
 }
 
-.logo img {
-  height: 40px;
-  width: auto;
-  display: block;
+.logo {
+  z-index: 1001; /* Garante que fique acima da sobreposição */
 }
 
-.mobile-menu-btn {
+.logo img {
+  height: 32px;
+  width: auto;
+  display: block;
+  transition: filter 0.3s;
+}
+
+/* Quando o menu está aberto, inverte a cor para branco */
+.navbar.menu-open .logo img {
+  filter: brightness(0) invert(1);
+}
+
+/* HAMBURGER MENU - ORIGINAL STYLE */
+.hamburger {
   display: none;
+  cursor: pointer;
+  z-index: 1001;
   background: none;
   border: none;
-  cursor: pointer;
-  color: var(--dark);
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px 0;
+  background-color: var(--dark);
+  transition: all 0.3s ease-in-out;
 }
 
 @media (max-width: 992px) {
-  .nav-links-desktop { display: none; }
-  .mobile-menu-btn { display: block; }
+  .hamburger {
+    display: block;
+  }
+
+  .hamburger.active span {
+    background-color: white !important;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+    background-color: var(--dark);
+  }
 }
 
-.btn-nav {
+/* MENU MOBILE - ESTILO ORIGINAL (SOBREPOSIÇÃO TOTAL) */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark);
+  z-index: 2000; /* Aumentado para garantir cobertura total */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+  visibility: hidden;
+}
+
+.mobile-menu-overlay.active {
+  left: 0;
+  visibility: visible;
+}
+
+/* Garante que o botão e a logo fiquem visíveis por cima do menu preto */
+.logo, .hamburger {
+  z-index: 2001 !important;
+}
+
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.mobile-menu-content a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.8rem;
+  font-weight: 800;
+  transition: color 0.3s;
+}
+
+.mobile-menu-content a:hover {
+  color: var(--primary);
+}
+
+.btn-mobile-whatsapp {
+  background-color: #25D366;
+  color: white !important;
+  padding: 15px 30px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem !important;
+  margin-top: 10px;
+}
+
+/* Bloqueia o scroll quando o menu está aberto */
+body.nav-open {
+  overflow: hidden;
+}
+
+.mobile-menu-btn {
   background-color: transparent !important;
   color: inherit !important;
   padding: 0 !important;

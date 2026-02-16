@@ -22,8 +22,17 @@ const Header = () => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
+  // Gerencia o scroll do body quando o menu está aberto
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.classList.add('nav-open');
+    } else {
+      document.body.classList.remove('nav-open');
+    }
+  }, [isMobileMenuOpen]);
+
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}>
       <div className="container nav-container">
         <Link to="/" className="logo">
           <img src="/img/Shineray-logo2.png" alt="Shineray Logo" />
@@ -45,31 +54,31 @@ const Header = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button className="mobile-menu-btn" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-          {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+        <button 
+          className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`} 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
       </div>
 
-      {/* Mobile Dropdown */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="mobile-menu"
+      {/* Mobile Menu Overlay - Estilo Original (Vindo da Esquerda) */}
+      <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`}>
+        <div className="mobile-menu-content">
+          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Início</Link>
+          <Link to="/catalogo" onClick={() => setIsMobileMenuOpen(false)}>Produtos</Link>
+          <Link to="/vendedores" onClick={() => setIsMobileMenuOpen(false)}>Vendedores</Link>
+          <a 
+            href={`https://wa.me/${Config.contato.whatsapp.numero}`} 
+            className="btn-mobile-whatsapp"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            <div className="container">
-              <Link to="/">Início</Link>
-              <Link to="/catalogo">Produtos</Link>
-              <Link to="/vendedores">Vendedores</Link>
-              <a href={`https://wa.me/${Config.contato.whatsapp.numero}`} className="btn-mobile-whatsapp">
-                Falar com Vendedor <MessageCircle size={18} />
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Falar com Vendedor <MessageCircle size={18} />
+          </a>
+        </div>
+      </div>
     </nav>
   );
 };
