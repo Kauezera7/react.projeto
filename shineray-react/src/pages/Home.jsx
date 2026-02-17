@@ -32,7 +32,7 @@ const Home = () => {
         <div className="container-full-width">
           <div className="section-header">
             <span className="section-subtitle">Nossa Vitrine</span>
-            <h2>Produtos em <span className="highlight">Destaque</span></h2>
+            <h2>Catálogo em <span className="highlight">Destaque</span></h2>
             <p>Conheça os modelos mais desejados da Shineray Colombo.</p>
           </div>
           <ProductCarousel />

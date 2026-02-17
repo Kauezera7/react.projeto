@@ -34,14 +34,14 @@ const Header = () => {
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}>
       <div className="container-full-width nav-container">
-        <Link to="/" className="logo">
+        <Link to="/" className="logo nav-logo">
           <img src="/img/Shineray-logo2.png" alt="Shineray Logo" />
         </Link>
 
         {/* Desktop Menu */}
         <div className="nav-links-desktop">
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Início</Link>
-          <Link to="/catalogo" className={location.pathname === '/catalogo' ? 'active' : ''}>Produtos</Link>
+          <Link to="/catalogo" className={location.pathname === '/catalogo' ? 'active' : ''}>Catálogo</Link>
           <Link to="/vendedores" className={location.pathname === '/vendedores' ? 'active' : ''}>Vendedores</Link>
           <a 
             href={`https://wa.me/${Config.contato.whatsapp.numero}`} 
@@ -68,7 +68,7 @@ const Header = () => {
       <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`}>
         <div className="mobile-menu-content">
           <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Início</Link>
-          <Link to="/catalogo" onClick={() => setIsMobileMenuOpen(false)}>Produtos</Link>
+          <Link to="/catalogo" onClick={() => setIsMobileMenuOpen(false)}>Catálogo</Link>
           <Link to="/vendedores" onClick={() => setIsMobileMenuOpen(false)}>Vendedores</Link>
           <a 
             href={`https://wa.me/${Config.contato.whatsapp.numero}`} 
