@@ -65,7 +65,7 @@ const Catalog = () => {
     <div className="drawer-catalog">
       {/* 1. BARRA DE NAVEGAÇÃO DO CATÁLOGO (FIXA) */}
       <header className="catalog-top-nav">
-        <div className="container">
+        <div className="container-full-width">
           <div className="top-nav-inner">
             <div className="catalog-title">
               <span className="subtitle">Shineray 2025</span>
@@ -192,7 +192,7 @@ const Catalog = () => {
       </AnimatePresence>
 
       {/* 3. CONTEÚDO PRINCIPAL (GRID) */}
-      <main className="container catalog-viewport">
+      <main className="container-full-width catalog-viewport">
         <div className="viewport-header">
           <p>Exibindo <strong>{filteredAndSortedProducts.length}</strong> motocicletas de alta performance</p>
         </div>

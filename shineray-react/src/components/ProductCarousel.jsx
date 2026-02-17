@@ -26,6 +26,14 @@ const ProductCarousel = () => {
             slidesPerView: 3,
             spaceBetween: 30,
           },
+          1280: {
+            slidesPerView: 4,
+            spaceBetween: 30,
+          },
+          1600: {
+            slidesPerView: 5,
+            spaceBetween: 30,
+          },
         }}
         autoplay={{
           delay: 3000,

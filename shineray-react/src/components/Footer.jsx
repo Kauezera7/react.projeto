@@ -6,7 +6,7 @@ import { Config } from '../data/config';
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container">
+      <div className="container-full-width">
         <div className="footer-content">
           {/* Coluna 1: Logo e Empresa */}
           <div className="footer-section">

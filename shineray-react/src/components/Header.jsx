@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}>
-      <div className="container nav-container">
+      <div className="container-full-width nav-container">
         <Link to="/" className="logo">
           <img src="/img/Shineray-logo2.png" alt="Shineray Logo" />
         </Link>

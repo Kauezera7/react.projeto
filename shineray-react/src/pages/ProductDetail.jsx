@@ -46,7 +46,7 @@ const ProductDetail = () => {
 
   return (
     <div className="premium-pd">
-      <div className="container">
+      <div className="container-full-width">
         {/* NAVEGAÇÃO */}
         <div className="pd-nav">
           <button onClick={() => navigate(-1)} className="btn-back-link">
@@ -172,7 +172,9 @@ const ProductDetail = () => {
               autoplay={{ delay: 4000 }}
               breakpoints={{
                 640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 },
+                1600: { slidesPerView: 5 }
               }}
               className="relatedSwiper"
             >

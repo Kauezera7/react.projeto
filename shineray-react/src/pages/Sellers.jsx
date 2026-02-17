@@ -7,7 +7,7 @@ import { sellersData } from '../data/sellers';
 const Sellers = () => {
   return (
     <div className="premium-sellers-page">
-      <div className="container">
+      <div className="container-full-width">
         {/* HEADER ELEGANTE */}
         <header className="sellers-header">
           <motion.div 

@@ -20,11 +20,11 @@
   width: 100%;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-  width: 100%;
+.container, .container-full-width {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 4% !important;
 }
 
 /* NAVBAR - EFEITO TRANSPARENTE AO ROLAR */

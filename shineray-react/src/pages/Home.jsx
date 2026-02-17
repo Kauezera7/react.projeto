@@ -14,7 +14,7 @@ const Home = () => {
 
       {/* 2. BARRA DE CTA COMERCIAL */}
       <section className="catalog-cta-standard">
-        <div className="container">
+        <div className="container-full-width">
           <div className="cta-standard-grid">
             <div className="cta-info">
               <h3>Toda a linha Shineray 2025</h3>
@@ -29,7 +29,7 @@ const Home = () => {
 
       {/* 3. PRODUTOS DESTAQUE */}
       <section className="featured-products">
-        <div className="container">
+        <div className="container-full-width">
           <div className="section-header">
             <span className="section-subtitle">Nossa Vitrine</span>
             <h2>Produtos em <span className="highlight">Destaque</span></h2>
@@ -41,7 +41,7 @@ const Home = () => {
 
       {/* 4. DIFERENCIAIS */}
       <section className="premium-services" id="sobre">
-        <div className="container">
+        <div className="container-full-width">
           <div className="section-header">
             <span className="section-subtitle">Diferenciais Shineray</span>
             <h2>Excelência em <span className="highlight">cada detalhe</span></h2>
@@ -102,7 +102,7 @@ const Home = () => {
 
       {/* 5. LOCALIZAÇÃO (VERSÃO PREMIUM) */}
       <section id="location" className="location-section">
-        <div className="container">
+        <div className="container-full-width">
           <div className="location-grid">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
