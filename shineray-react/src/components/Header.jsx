@@ -17,12 +17,10 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Fecha o menu mobile ao mudar de página
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
-  // Gerencia o scroll do body quando o menu está aberto
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.classList.add('nav-open');
@@ -30,6 +28,12 @@ const Header = () => {
       document.body.classList.remove('nav-open');
     }
   }, [isMobileMenuOpen]);
+
+  const navLinks = [
+    { name: 'Início', path: '/' },
+    { name: 'Catálogo', path: '/catalogo' },
+    { name: 'Vendedores', path: '/vendedores' },
+  ];
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}>
@@ -40,17 +44,32 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <div className="nav-links-desktop">
-          <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Início</Link>
-          <Link to="/catalogo" className={location.pathname === '/catalogo' ? 'active' : ''}>Catálogo</Link>
-          <Link to="/vendedores" className={location.pathname === '/vendedores' ? 'active' : ''}>Vendedores</Link>
-          <a 
-            href={`https://wa.me/${Config.contato.whatsapp.numero}`} 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="btn-nav"
+          {navLinks.map((link) => (
+            <motion.div
+              key={link.path}
+              whileHover={{ y: -2 }}
+              className="nav-link-wrapper"
+            >
+              <Link 
+                to={link.path} 
+                className={location.pathname === link.path ? 'active' : ''}
+              >
+                {link.name}
+              </Link>
+            </motion.div>
+          ))}
+          <motion.div
+            whileHover={{ y: -2 }}
+            className="nav-link-wrapper"
           >
-            Contato
-          </a>
+            <a 
+              href={`https://wa.me/${Config.contato.whatsapp.numero}`} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+            >
+              Contato
+            </a>
+          </motion.div>
         </div>
 
         {/* Mobile Toggle */}
@@ -64,21 +83,46 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay - Estilo Original (Vindo da Esquerda) */}
-      <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`}>
-        <div className="mobile-menu-content">
-          <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>Início</Link>
-          <Link to="/catalogo" onClick={() => setIsMobileMenuOpen(false)}>Catálogo</Link>
-          <Link to="/vendedores" onClick={() => setIsMobileMenuOpen(false)}>Vendedores</Link>
-          <a 
-            href={`https://wa.me/${Config.contato.whatsapp.numero}`} 
-            className="btn-mobile-whatsapp"
-            onClick={() => setIsMobileMenuOpen(false)}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            className="mobile-menu-overlay active"
+            initial={{ x: '-100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '-100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
           >
-            Falar com Vendedor <MessageCircle size={18} />
-          </a>
-        </div>
-      </div>
+            <div className="mobile-menu-content">
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.path}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Link to={link.path} onClick={() => setIsMobileMenuOpen(false)}>
+                    {link.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <a 
+                  href={`https://wa.me/${Config.contato.whatsapp.numero}`} 
+                  className="btn-mobile-whatsapp"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Falar com Vendedor <MessageCircle size={18} />
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
