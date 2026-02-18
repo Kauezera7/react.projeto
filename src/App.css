@@ -1123,13 +1123,15 @@
   }
 }
 
-/* --- ESTILO COMERCIAL PROFISSIONAL --- */
+/* --- ESTILO COMERCIAL PROFISSIONAL (MINIMALISTA) --- */
 .catalog-cta-standard {
-  background-color: var(--dark);
-  padding: 0 0 0px 0; /* Zerado o topo (primeiro valor) */
-  color: white;
+  background-color: transparent;
+  padding: 40px 0;
+  color: var(--dark);
   margin-top: 0 !important;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .cta-standard-grid {
@@ -1143,52 +1145,56 @@
   font-size: 1.8rem;
   font-weight: 800;
   margin-bottom: 5px;
-  color: white;
+  color: var(--dark);
 }
 
 .cta-info p {
-  color: #ccc;
-  font-size: 1rem;
+  color: var(--gray);
+  font-size: 1.1rem;
 }
 
 .btn-catalog-red {
-  background-color: var(--primary);
-  color: white;
-  text-decoration: none;
-  padding: 15px 35px;
-  border-radius: 8px;
+  background-color: transparent;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 5px 0;
+  border-radius: 0;
   font-weight: 700;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
-  gap: 12px;
-  transition: background 0.3s;
+  gap: 8px;
+  transition: all 0.3s ease;
   white-space: nowrap;
 }
 
 .btn-catalog-red:hover {
-  background-color: var(--primary-hover);
+  color: var(--primary-hover);
+  background-color: transparent;
+  gap: 12px;
 }
 
 @media (max-width: 768px) {
   .catalog-cta-standard {
-    padding: 30px 0;
+    padding: 30px 20px;
+    margin-bottom: 30px;
   }
   .cta-info h3 {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
   }
   .cta-info p {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   .cta-standard-grid {
     flex-direction: column;
     text-align: center;
-    gap: 20px;
+    gap: 25px;
   }
   .btn-catalog-red {
-    width: 100%;
+    width: fit-content;
+    margin: 0 auto;
     justify-content: center;
-    padding: 12px 25px;
-    font-size: 0.95rem;
   }
 }
 
