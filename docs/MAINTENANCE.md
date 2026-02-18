@@ -1,103 +1,92 @@
-# 🛠️ Guia de Manutenção - Shineray Colombo
+# 🛠️ Guia de Manutenção - Shineray Colombo (Versão React)
 
-Este documento fornece instruções detalhadas para realizar a manutenção técnica e atualização de conteúdo do projeto.
+Este documento fornece instruções detalhadas para realizar a manutenção técnica, atualização de estoque e gestão de consultores no novo sistema React.
 
 ---
 
 ## 1. Configurações Globais (WhatsApp, Endereço, Redes Sociais)
-As informações estão divididas em dois arquivos principais:
+Diferente da versão anterior, todas as configurações estão centralizadas em um único arquivo de dados para facilitar a manutenção.
 
-### 📱 Dados e Contatos (`js/config.js`)
-Centraliza números de telefone, links de redes sociais e endereço.
-1. Abra `js/config.js`.
+### 📱 Dados da Loja (`src/data/config.js`)
+Este arquivo é o "coração" das informações de contato do site.
+1. Abra o arquivo `src/data/config.js`.
 2. Altere os valores dentro do objeto `Config`.
-
-### 🏗️ Menu e Rodapé (`js/layout.js`)
-Centraliza a estrutura HTML do topo e da base do site.
-1. Abra `js/layout.js`.
-2. Altere o HTML dentro das constantes `HEADER_CONTENT` ou `FOOTER_CONTENT`.
-3. Útil para adicionar novos links no menu ou trocar a logo.
+3. **Importante:** O campo `whatsapp.numero` deve conter apenas números, incluindo o DDI (Ex: 554198251213).
 
 ---
 
-## 2. Gestão de Produtos (Catálogo)
-Os produtos são gerenciados no arquivo `js/products-data.js`.
+## 2. Gestão de Produtos (Estoque Digital)
+Os produtos são gerenciados no arquivo `src/data/products.js`.
 
-### Adicionando um novo produto:
-Copie o modelo abaixo e adicione ao final do array `productsData`:
+### Como adicionar um novo veículo:
+Adicione um novo objeto ao array `productsData` seguindo o modelo abaixo:
 
 ```javascript
 {
-    id: 6, // ID numérico sequencial
-    slug: "nome-da-moto-url", // Texto usado na URL (evite espaços e acentos)
-    name: "Nome Completo da Moto",
-    category: "motocicleta", // Opções: ciclomotor, motocicleta, scooter, bike, etc.
+    id: 6, // Próximo número disponível
+    slug: "nome-do-modelo-url", // Texto para a URL (sem espaços ou acentos)
+    name: "Nome Comercial da Moto",
+    category: "scooter", // Categorias: scooter, motocicleta, eletrica
     price: "R$ 00.000,00",
     installment: "12x de R$ 000,00",
-    badge: "Destaque", // Texto que aparece no selo (opcional)
-    brand: "shineray", // shineray ou sbm
-    fuel: "gasolina", // gasolina ou eletrica
-    mainImage: "img/nome-da-imagem.webp",
+    badge: "Novo", // Selo opcional (Destaque, Popular, etc)
+    brand: "Shineray", // Shineray ou SBM
+    fuel: "Gasolina", // Gasolina ou Elétrica
+    colors: ["Preto", "Branco"], // Cores disponíveis
+    mainImage: "/img/nome-da-foto.webp", // Caminho da imagem em /public/img/
     highlights: [
-        { icon: "fa-bolt", text: "Destaque 1" },
-        { icon: "fa-cogs", text: "Destaque 2" }
+        { icon: "Zap", text: "Destaque Visual 1" },
+        { icon: "Settings", text: "Destaque Técnico 2" }
     ],
-    thumbnails: ["img/foto1.webp", "img/foto2.webp"],
     specifications: {
         "Cilindrada": "000 cc",
         "Potência": "00 cv",
-        "Tanque": "00 Litros"
-        // Adicione quantos campos desejar
+        "Tanque": "0 Litros"
+        // Você pode adicionar quantos campos quiser aqui
     }
 }
 ```
 
 ---
 
-## 3. Gestão de Vendedores (Equipe)
-Os vendedores são gerenciados no arquivo `js/sellers-data.js`.
+## 3. Gestão de Consultores (Equipe de Vendas)
+Os vendedores são gerenciados no arquivo `src/data/sellers.js`.
 
-### Adicionando um novo vendedor:
+### Como cadastrar um novo vendedor:
 Adicione um novo objeto ao array `sellersData`:
 
 ```javascript
 {
-    id: "nome-vendedor", // ID único para a URL
-    name: "Nome do Vendedor",
-    role: "Cargo",
+    id: "nome-do-vendedor", // ID único para a URL do perfil
+    name: "Nome Completo",
+    role: "Cargo / Especialidade",
     whatsapp: "5541999999999",
     instagram: "https://instagram.com/perfil",
-    location: "Nome da Unidade",
-    locationLink: "link-google-maps",
-    avatar: "img/vendedores/foto.jpg",
-    bio: "Pequeno texto de apresentação.",
-    email: "email@shineraycolombo.com.br"
+    location: "Colombo - PR",
+    avatar: "https://link-da-foto.jpg", // Ou caminho local em /public/img/
+    bio: "Texto de apresentação do vendedor."
 }
 ```
 
 ---
 
-## 4. Imagens e Assets
-Para manter a performance do site, siga estas recomendações:
-
-- **Formato:** Use preferencialmente `.webp` (mais leve) ou `.png` (para logos com transparência).
-- **Tamanho de Produtos:** Imagens quadradas ou 4:3 (ex: 800x800px ou 800x600px).
-- **Otimização:** Antes de subir uma imagem, passe-a por um otimizador (ex: TinyPNG).
-- **Localização:** Todas as imagens devem estar na pasta `img/`.
+## 4. Estrutura de Componentes e Estilos
+- **Componentes (`src/components/`):** Contém as partes reutilizáveis como Header, Footer e ProductCard.
+- **Páginas (`src/pages/`):** Contém as telas completas (Home, Catálogo, Detalhes).
+- **Estilos (`src/App.css`):** Contém as variáveis de cores globais no topo (`:root`). Para mudar o vermelho da marca, altere a variável `--primary`.
 
 ---
 
-## 5. Estilização (CSS)
-- `css/style.css`: Contém as variáveis de cores globais no topo (`:root`). Se precisar mudar o vermelho padrão da Shineray, altere aqui.
-- `css/catalog.css`: Controla o visual do grid de produtos e dos filtros dropdown.
-- `css/seller-profile.css`: Controla o layout da página de vendedor (estilo mobile-first).
+## 5. Dicas de Performance e Imagens
+- **Formato:** Use sempre `.webp` para fotos de produtos. É 70% mais leve que o JPEG tradicional.
+- **Otimização:** Antes de adicionar uma imagem na pasta `public/img/`, utilize ferramentas como [Squoosh](https://squoosh.app/) ou [TinyPNG](https://tinypng.com/).
+- **Resolução:** Fotos de produtos ficam melhores se forem quadradas (1:1) ou em proporção 4:3.
 
 ---
 
-## 6. Fluxo de Trabalho Recomendado
-1. **Desenvolvimento Local:** Faça as alterações e teste abrindo o `index.html` no navegador.
-2. **Verificação de Console:** Pressione F12 e verifique se há erros em vermelho no "Console".
-3. **Teste Responsivo:** Use o modo de inspeção do navegador para garantir que o layout funciona bem em celulares.
+## 6. Comandos de Desenvolvimento
+- `npm run dev`: Inicia o ambiente de testes local.
+- `npm run build`: Gera a versão final otimizada para publicação (Pasta `dist`).
 
 ---
-*Última atualização: Fevereiro de 2026.*
+*Documentação atualizada em Fevereiro de 2026.*

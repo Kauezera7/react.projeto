@@ -13,25 +13,9 @@ import {
 import { sellersData } from '../data/sellers';
 import './SellerProfile.css';
 
-// Ícone do WhatsApp em SVG para garantir que seja o logo oficial
-const WhatsAppIcon = ({ size = 24, color = "currentColor" }) => (
-    <svg 
-        width={size} 
-        height={size} 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke={color} 
-        strokeWidth="2" 
-        strokeLinecap="round" 
-        strokeLinejoin="round"
-    >
-        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-11.7 8.38 8.38 0 0 1 3.8.9L21 3z" />
-        <path d="M11 11.5l1 1h.01L13 14" />
-        <path d="M9 9.5l1 1h.01L11 12" />
-    </svg>
-);
-
-// Usando FontAwesome para o logo real do WhatsApp ou um SVG mais fiel
+/**
+ * Componente Visual: Logo do WhatsApp (SVG Oficial)
+ */
 const WhatsAppLogoReal = ({ size = 24 }) => (
     <svg 
         width={size} 
@@ -43,10 +27,15 @@ const WhatsAppLogoReal = ({ size = 24 }) => (
     </svg>
 );
 
+/**
+ * Página de Perfil do Consultor (Estilo Linktree)
+ * Exibe um cartão de visitas digital dinâmico baseado no ID do vendedor.
+ */
 const SellerProfile = () => {
-    const { id } = useParams();
+    const { id } = useParams(); // Pega o ID da URL (ex: /consultor/carlos-junior)
     const seller = sellersData.find(s => s.id === id);
 
+    // Atualiza o título da página com o nome do vendedor para SEO
     useEffect(() => {
         if (seller) {
             document.title = `${seller.name} | Consultor Shineray`;
@@ -54,6 +43,7 @@ const SellerProfile = () => {
         }
     }, [seller]);
 
+    // Caso o vendedor não exista (URL inválida)
     if (!seller) {
         return (
             <div className="container" style={{ textAlign: 'center', padding: '100px 20px' }}>
@@ -65,10 +55,12 @@ const SellerProfile = () => {
 
     return (
         <div className="seller-profile-page">
+            {/* Botão Voltar (Posicionado acima do card) */}
             <Link to="/vendedores" className="btn-back-minimal">
                 <ArrowLeft size={22} />
             </Link>
 
+            {/* Cabeçalho de Fundo com Logo */}
             <header className="profile-header-premium">
                 <img 
                     src="/img/Shineray-logo-branco.png" 
@@ -84,6 +76,7 @@ const SellerProfile = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
+                    {/* Foto e Badge de Verificado */}
                     <div className="profile-avatar-wrapper">
                         <img src={seller.avatar} alt={seller.name} className="profile-avatar-large" />
                         <div className="verified-badge">
@@ -98,8 +91,9 @@ const SellerProfile = () => {
                         {seller.bio}
                     </p>
 
+                    {/* Lista de Links de Contato (Estilo Linktree) */}
                     <div className="profile-links">
-                        {/* WhatsApp */}
+                        {/* Botão WhatsApp */}
                         <a 
                             href={`https://wa.me/${seller.whatsapp}`} 
                             target="_blank" 
@@ -118,7 +112,7 @@ const SellerProfile = () => {
                             <ChevronRight size={18} className="link-arrow-right" />
                         </a>
 
-                        {/* Instagram */}
+                        {/* Botão Instagram */}
                         {seller.instagram && (
                             <a 
                                 href={seller.instagram} 
@@ -139,7 +133,7 @@ const SellerProfile = () => {
                             </a>
                         )}
 
-                        {/* Catálogo */}
+                        {/* Botão Catálogo Geral */}
                         <Link to="/catalogo" className="profile-link-card">
                             <div className="link-left">
                                 <div className="link-icon-circle catalog-icon">
@@ -153,7 +147,7 @@ const SellerProfile = () => {
                             <ChevronRight size={18} className="link-arrow-right" />
                         </Link>
 
-                        {/* Localização */}
+                        {/* Botão Localização (Google Maps) */}
                         {seller.locationLink && (
                             <a 
                                 href={seller.locationLink} 
@@ -175,6 +169,7 @@ const SellerProfile = () => {
                         )}
                     </div>
 
+                    {/* Selo de Consultor Oficial */}
                     <div className="profile-card-footer">
                         <ShieldCheck size={18} color="#e60012" />
                         <span>Consultor Oficial Shineray</span>

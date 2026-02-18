@@ -4,38 +4,51 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { productsData } from '../data/products';
 import ProductCard from '../components/ProductCard';
 
+/**
+ * Página de Catálogo (Showroom)
+ * Apresenta a listagem de produtos com sistema avançado de filtros e busca.
+ */
 const Catalog = () => {
+  // Estados para controle de busca e filtros
   const [searchTerm, setSearchTerm] = useState('');
   const [activeCategory, setActiveCategory] = useState('Todas');
   const [activeBrand, setActiveBrand] = useState('Todas');
   const [activeFuel, setActiveFuel] = useState('Todas');
   const [activeColor, setActiveColor] = useState('Todas');
   const [sortBy, setSortBy] = useState('default');
+  
+  // Estados de Interface (UI)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Efeito para simular carregamento ao aplicar filtros (melhora a percepção de UX)
   useEffect(() => {
     setIsLoading(true);
     const timer = setTimeout(() => setIsLoading(false), 400);
     return () => clearTimeout(timer);
   }, [activeCategory, activeBrand, activeFuel, activeColor, searchTerm]);
 
+  // Mapeamento de cores para exibição visual nos círculos (swatches)
   const colorMap = {
     'Preto': '#000000', 'Branco': '#FFFFFF', 'Vermelho': '#C8080E',
     'Azul': '#0056b3', 'Cinza': '#808080'
   };
 
+  // Opções de filtros disponíveis
   const categories = ['Todas', 'Scooter', 'Motocicleta'];
   const brands = ['Todas', 'Shineray', 'SBM'];
   const fuels = ['Todas', 'Gasolina', 'Elétrica'];
   
+  // Extrai dinamicamente todas as cores presentes nos produtos para o filtro
   const allColors = useMemo(() => {
     const colors = new Set();
     productsData.forEach(p => p.colors?.forEach(c => colors.add(c)));
     return Array.from(colors);
   }, []);
 
+  // Lógica principal: Filtragem e Ordenação dos Produtos
   const filteredAndSortedProducts = useMemo(() => {
+    // 1. Filtragem por múltiplos critérios
     let result = productsData.filter(product => {
       const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory = activeCategory === 'Todas' || product.category.toLowerCase() === activeCategory.toLowerCase();
@@ -45,8 +58,10 @@ const Catalog = () => {
       return matchesSearch && matchesCategory && matchesBrand && matchesFuel && matchesColor;
     });
 
+    // 2. Ordenação por preço
     const sorted = [...result];
     if (sortBy === 'price-asc') {
+      // Converte string de preço (R$ 10.000,00) para número para ordenar corretamente
       sorted.sort((a, b) => parseFloat(a.price.replace(/[^\d.]/g, '').replace(',', '.')) - parseFloat(b.price.replace(/[^\d.]/g, '').replace(',', '.')));
     } else if (sortBy === 'price-desc') {
       sorted.sort((a, b) => parseFloat(b.price.replace(/[^\d.]/g, '').replace(',', '.')) - parseFloat(a.price.replace(/[^\d.]/g, '').replace(',', '.')));
@@ -54,6 +69,7 @@ const Catalog = () => {
     return sorted;
   }, [searchTerm, activeCategory, activeBrand, activeFuel, activeColor, sortBy]);
 
+  // Conta quantos filtros estão ativos no momento
   const activeFiltersCount = [
     activeCategory !== 'Todas',
     activeBrand !== 'Todas',
@@ -63,7 +79,7 @@ const Catalog = () => {
 
   return (
     <div className="drawer-catalog">
-      {/* 1. BARRA DE NAVEGAÇÃO DO CATÁLOGO (FIXA) */}
+      {/* 1. CABEÇALHO DO CATÁLOGO (Busca e Botão de Filtro) */}
       <header className="catalog-top-nav">
         <div className="container-full-width">
           <div className="top-nav-inner">
@@ -90,10 +106,11 @@ const Catalog = () => {
         </div>
       </header>
 
-      {/* 2. GAVETA LATERAL DE FILTROS (DRAWER) */}
+      {/* 2. GAVETA LATERAL DE FILTROS (Overlay e Menu) */}
       <AnimatePresence>
         {isDrawerOpen && (
           <>
+            {/* Fundo escurecido que fecha o menu ao ser clicado */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -101,6 +118,7 @@ const Catalog = () => {
               className="drawer-overlay"
               onClick={() => setIsDrawerOpen(false)}
             />
+            {/* Menu Lateral Animado */}
             <motion.aside 
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -116,7 +134,7 @@ const Catalog = () => {
               </div>
 
               <div className="drawer-content">
-                {/* CATEGORIAS */}
+                {/* Filtro por Estilo (Categoria) */}
                 <div className="drawer-section">
                   <h3>Estilo</h3>
                   <div className="options-stack">
@@ -129,7 +147,7 @@ const Catalog = () => {
                   </div>
                 </div>
 
-                {/* MARCAS */}
+                {/* Filtro por Marca */}
                 <div className="drawer-section">
                   <h3>Marca</h3>
                   <div className="options-grid">
@@ -139,7 +157,7 @@ const Catalog = () => {
                   </div>
                 </div>
 
-                {/* COMBUSTÍVEL */}
+                {/* Filtro por Propulsão (Combustível) */}
                 <div className="drawer-section">
                   <h3>Propulsão</h3>
                   <div className="options-grid">
@@ -149,7 +167,7 @@ const Catalog = () => {
                   </div>
                 </div>
 
-                {/* CORES */}
+                {/* Filtro por Cores */}
                 <div className="drawer-section">
                   <h3>Cores</h3>
                   <div className="drawer-swatches">
@@ -168,7 +186,7 @@ const Catalog = () => {
                   </div>
                 </div>
 
-                {/* ORDENAÇÃO */}
+                {/* Seletor de Ordenação */}
                 <div className="drawer-section">
                   <h3>Ordenar por</h3>
                   <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="drawer-select">
@@ -191,12 +209,13 @@ const Catalog = () => {
         )}
       </AnimatePresence>
 
-      {/* 3. CONTEÚDO PRINCIPAL (GRID) */}
+      {/* 3. CONTEÚDO PRINCIPAL (Grid de Resultados) */}
       <main className="container-full-width catalog-viewport">
         <div className="viewport-header">
           <p>Exibindo <strong>{filteredAndSortedProducts.length}</strong> motocicletas de alta performance</p>
         </div>
 
+        {/* Exibe Skeletons (Carregamento) ou a Grid de Produtos */}
         {isLoading ? (
           <div className="pro-loader-grid">
             {[1,2,3,4].map(i => <div key={i} className="skeleton-card-lux"></div>)}

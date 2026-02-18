@@ -3,12 +3,16 @@ import { Facebook, Instagram, Youtube, Phone, Mail, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import { Config } from '../data/config';
 
+/**
+ * Componente de Rodapé (Footer)
+ * Exibe informações institucionais, links de navegação rápida e contatos.
+ */
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="container-full-width">
         <div className="footer-content">
-          {/* Coluna 1: Logo e Empresa */}
+          {/* Coluna 1: Identidade Visual e Dados Fiscais */}
           <div className="footer-section">
             <Link to="/" className="logo">
               <img src="/img/Shineray-logo-branco.png" alt="Shineray Logo" className="logo-footer" />
@@ -19,7 +23,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Coluna 2: Navegação Rápida */}
+          {/* Coluna 2: Navegação Interna do Site */}
           <div className="footer-section">
             <h3>Navegação</h3>
             <ul className="footer-links">
@@ -30,7 +34,7 @@ const Footer = () => {
             </ul>
           </div>
           
-          {/* Coluna 3: Informações de Contato */}
+          {/* Coluna 3: Canais de Atendimento e Localização */}
           <div className="footer-section">
             <h3>Contato</h3>
             <p><Phone size={16} /> <span>{Config.contato.telefone.formatado}</span></p>
@@ -40,7 +44,7 @@ const Footer = () => {
             </a>
           </div>
           
-          {/* Coluna 4: Redes Sociais */}
+          {/* Coluna 4: Redes Sociais Oficiais */}
           <div className="footer-section">
             <h3>Redes Sociais</h3>
             <div className="social-links-footer">
@@ -51,6 +55,7 @@ const Footer = () => {
           </div>
         </div>
         
+        {/* Créditos Finais */}
         <div className="footer-bottom">
           <p>Todos os direitos reservados.</p>
         </div>

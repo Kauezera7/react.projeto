@@ -1,3 +1,12 @@
+/**
+ * Banco de Dados de Produtos
+ * Cada objeto representa um veículo no catálogo.
+ * 
+ * Campos principais:
+ * - slug: Identificador único usado na URL (SEO-friendly)
+ * - category: Usado para o sistema de filtros (scooter, motocicleta, etc)
+ * - specs: Objeto chave-valor para a ficha técnica dinâmica
+ */
 export const productsData = [
     {
         id: 1,

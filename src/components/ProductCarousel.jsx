@@ -4,11 +4,14 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import ProductCard from './ProductCard';
 import { productsData } from '../data/products';
 
+// Estilos obrigatórios para o funcionamento do Carrossel
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// Ícones SVG solicitados
+/**
+ * Componentes de Ícones Customizados (SVG) para os botões de navegação
+ */
 const CaretLeft = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
     <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
@@ -21,9 +24,14 @@ const CaretRight = () => (
   </svg>
 );
 
+/**
+ * Componente: Carrossel de Produtos
+ * Apresenta a listagem de produtos em um formato deslizante e responsivo.
+ */
 const ProductCarousel = () => {
   return (
     <div className="product-carousel-container-outer">
+      {/* Botão Customizado - Esquerda */}
       <button className="custom-swiper-btn prev-btn" id="featured-prev">
         <CaretLeft />
       </button>
@@ -38,6 +46,7 @@ const ProductCarousel = () => {
             prevEl: '#featured-prev',
           }}
           pagination={{ clickable: true }}
+          // Configurações de Responsividade: Define quantos itens mostrar por tamanho de tela
           breakpoints={{
             640: { slidesPerView: 2, spaceBetween: 20 },
             1024: { slidesPerView: 3, spaceBetween: 30 },
@@ -47,6 +56,7 @@ const ProductCarousel = () => {
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           className="productSwiper"
         >
+          {/* Mapeia e renderiza um ProductCard para cada produto do banco de dados */}
           {productsData.map((product, index) => (
             <SwiperSlide key={product.id}>
               <ProductCard product={product} index={index} />
@@ -55,6 +65,7 @@ const ProductCarousel = () => {
         </Swiper>
       </div>
 
+      {/* Botão Customizado - Direita */}
       <button className="custom-swiper-btn next-btn" id="featured-next">
         <CaretRight />
       </button>

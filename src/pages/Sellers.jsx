@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import { User, MessageCircle, ChevronRight, ShieldCheck, MapPin } from 'lucide-react';
 import { sellersData } from '../data/sellers';
 
+/**
+ * Página de Listagem de Vendedores
+ * Exibe todos os consultores disponíveis cadastrados no banco de dados local.
+ */
 const Sellers = () => {
   return (
     <div className="premium-sellers-page">
       <div className="container-full-width">
-        {/* HEADER ELEGANTE */}
+        {/* CABEÇALHO DA PÁGINA */}
         <header className="sellers-header">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -21,7 +25,7 @@ const Sellers = () => {
           </motion.div>
         </header>
 
-        {/* LISTA DE VENDEDORES */}
+        {/* GRID DE VENDEDORES (Renderização Dinâmica) */}
         <div className="sellers-grid-premium">
           {sellersData.map((seller, index) => (
             <motion.div
@@ -31,6 +35,7 @@ const Sellers = () => {
               transition={{ delay: index * 0.1 }}
               className="seller-card-wrapper"
             >
+              {/* Link dinâmico para a página individual do consultor */}
               <Link 
                 to={`/consultor/${seller.id}`}
                 className="seller-card-premium"
@@ -57,10 +62,10 @@ const Sellers = () => {
                   <h3>{seller.name}</h3>
                   <div className="seller-details">
                     <span><MapPin size={14} /> {seller.location}</span>
-                    {/* Removed experience as it's not in the new data schema */}
                   </div>
                 </div>
 
+                {/* Botão de Ação Visual */}
                 <div className="seller-action-premium">
                   <div className="wa-icon-box">
                     <MessageCircle size={22} />
@@ -73,7 +78,7 @@ const Sellers = () => {
           ))}
         </div>
 
-        {/* RODAPÉ DE CONFIANÇA */}
+        {/* SELO DE CONFIANÇA */}
         <footer className="sellers-footer-info">
           <div className="info-box">
             <ShieldCheck size={32} />

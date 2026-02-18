@@ -6,13 +6,17 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Config } from '../data/config';
 
+/**
+ * Página Inicial (Home)
+ * Composta por seções estratégicas para conversão e apresentação da marca.
+ */
 const Home = () => {
   return (
     <div className="home-page">
-      {/* 1. BANNER PRINCIPAL */}
+      {/* 1. BANNER PRINCIPAL (Hero) - Destaques visuais e promoções */}
       <HeroSlider />
 
-      {/* 2. BARRA DE CTA COMERCIAL */}
+      {/* 2. BARRA DE CHAMADA (CTA) - Link rápido para o catálogo completo */}
       <section className="catalog-cta-standard">
         <div className="container-full-width">
           <div className="cta-standard-grid">
@@ -27,7 +31,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. PRODUTOS DESTAQUE */}
+      {/* 3. PRODUTOS EM DESTAQUE - Carrossel dinâmico de modelos principais */}
       <section className="featured-products">
         <div className="container-full-width">
           <div className="section-header">
@@ -39,7 +43,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 4. DIFERENCIAIS */}
+      {/* 4. DIFERENCIAIS E SERVIÇOS - Apresentação do Pós-Venda, Financiamento e Oficina */}
       <section className="premium-services" id="sobre">
         <div className="container-full-width">
           <div className="section-header">
@@ -49,6 +53,7 @@ const Home = () => {
           </div>
 
           <div className="services-grid">
+            {/* Pós-Venda */}
             <motion.div whileHover={{ y: -10 }} className="service-card">
               <div className="service-image">
                 <img src="/img/pos-venda.jpeg" alt="Pós-Venda" />
@@ -65,6 +70,7 @@ const Home = () => {
               </div>
             </motion.div>
 
+            {/* Financiamento */}
             <motion.div whileHover={{ y: -10 }} className="service-card">
               <div className="service-image">
                 <img src="/img/finacimento.jpeg" alt="Financiamento" />
@@ -81,6 +87,7 @@ const Home = () => {
               </div>
             </motion.div>
 
+            {/* Oficina */}
             <motion.div whileHover={{ y: -10 }} className="service-card">
               <div className="service-image">
                 <img src="/img/oficina-shineray.jpeg" alt="Oficina" />
@@ -100,10 +107,11 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 5. LOCALIZAÇÃO (VERSÃO PREMIUM) */}
+      {/* 5. LOCALIZAÇÃO E CONTATO - Mapa interativo e informações físicas da loja */}
       <section id="location" className="location-section">
         <div className="container-full-width">
           <div className="location-grid">
+            {/* Informações de Texto */}
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -153,6 +161,7 @@ const Home = () => {
               </div>
             </motion.div>
 
+            {/* Mapa (Iframe Google Maps) */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}

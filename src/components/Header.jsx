@@ -4,11 +4,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Config } from '../data/config';
 
+/**
+ * Componente de Cabeçalho (Navbar)
+ * Gerencia a navegação principal, o estado do scroll para efeitos visuais 
+ * e o menu responsivo (mobile).
+ */
 const Header = () => {
+  // Estado para controlar se a página foi rolada (muda o estilo da navbar)
   const [isScrolled, setIsScrolled] = useState(false);
+  // Estado para controlar a abertura/fechamento do menu mobile
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Efeito para monitorar o scroll da página
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -17,10 +25,12 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Fecha o menu mobile automaticamente ao mudar de rota
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [location]);
 
+  // Bloqueia o scroll do corpo da página quando o menu mobile está aberto
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.classList.add('nav-open');
@@ -29,6 +39,7 @@ const Header = () => {
     }
   }, [isMobileMenuOpen]);
 
+  // Definição dos links de navegação
   const navLinks = [
     { name: 'Início', path: '/' },
     { name: 'Catálogo', path: '/catalogo' },
@@ -38,11 +49,12 @@ const Header = () => {
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''} ${isMobileMenuOpen ? 'menu-open' : ''}`}>
       <div className="container-full-width nav-container">
+        {/* Logo da Empresa */}
         <Link to="/" className="logo nav-logo">
           <img src="/img/Shineray-logo2.png" alt="Shineray Logo" />
         </Link>
 
-        {/* Desktop Menu */}
+        {/* Menu Desktop */}
         <div className="nav-links-desktop">
           {navLinks.map((link) => (
             <motion.div
@@ -58,6 +70,7 @@ const Header = () => {
               </Link>
             </motion.div>
           ))}
+          {/* Link dinâmico para o WhatsApp configurado globalmente */}
           <motion.div
             whileHover={{ y: -2 }}
             className="nav-link-wrapper"
@@ -72,7 +85,7 @@ const Header = () => {
           </motion.div>
         </div>
 
-        {/* Mobile Toggle */}
+        {/* Botão Hambúrguer (Mobile) */}
         <button 
           className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`} 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -83,7 +96,7 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* Overlay do Menu Mobile (com animação Framer Motion) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div 
@@ -106,6 +119,7 @@ const Header = () => {
                   </Link>
                 </motion.div>
               ))}
+              {/* Botão de WhatsApp no Menu Mobile */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -12,12 +12,14 @@ import { productsData } from '../data/products';
 import { Config } from '../data/config';
 import ProductCard from '../components/ProductCard';
 
-// Swiper styles
+// Estilos do Swiper (Carrossel)
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// Ícones SVG solicitados
+/**
+ * Ícones SVG Customizados para Navegação
+ */
 const CaretLeft = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
     <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
@@ -30,46 +32,55 @@ const CaretRight = () => (
   </svg>
 );
 
+/**
+ * Página de Detalhes do Produto
+ * Exibe informações técnicas completas, galeria de fotos e sugestões de modelos relacionados.
+ */
 const ProductDetail = () => {
-  const { slug } = useParams();
+  const { slug } = useParams(); // Obtém o identificador da moto pela URL
   const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [activeImage, setActiveImage] = useState('');
   const [relatedProducts, setRelatedProducts] = useState([]);
 
+  // Busca os dados da moto sempre que o 'slug' mudar
   useEffect(() => {
     const found = productsData.find(p => p.slug === slug);
     if (found) {
       setProduct(found);
       setActiveImage(found.mainImage);
       
-      // Sugestões: Filtra motos diferentes da atual e embaralha
+      // Lógica de Produtos Relacionados: Filtra a moto atual e embaralha as outras
       const related = productsData
         .filter(p => p.slug !== slug)
         .sort(() => 0.5 - Math.random());
       setRelatedProducts(related);
       
+      // Garante que o scroll volte ao topo ao carregar uma nova moto
       window.scrollTo(0, 0);
     }
   }, [slug]);
 
+  // Estado de carregamento caso a moto não seja encontrada imediatamente
   if (!product) return <div className="loading-state">Carregando...</div>;
 
+  // Prepara a mensagem personalizada para o WhatsApp
   const whatsappMessage = encodeURIComponent(`Olá! Gostaria de mais informações sobre a *${product.name}* que vi no site.`);
   const whatsappLink = `https://wa.me/${Config.contato.whatsapp.numero}?text=${whatsappMessage}`;
 
   return (
     <div className="premium-pd">
       <div className="container-full-width">
-        {/* NAVEGAÇÃO */}
+        {/* BOTÃO VOLTAR */}
         <div className="pd-nav">
           <button onClick={() => navigate(-1)} className="btn-back-link">
             <ArrowLeft size={16} /> Voltar para Coleção
           </button>
         </div>
 
-        {/* 1. SEÇÃO PRINCIPAL */}
+        {/* 1. SEÇÃO PRINCIPAL (FOTOS E RESUMO COMERCIAL) */}
         <div className="pd-main-section">
+          {/* Visual: Galeria de Imagens */}
           <div className="pd-visual">
             <motion.div 
               key={activeImage}
@@ -92,6 +103,7 @@ const ProductDetail = () => {
             </div>
           </div>
 
+          {/* Resumo: Nome, Preço e CTAs */}
           <div className="pd-summary">
             <span className="brand-label">{product.brand}</span>
             <h1 className="title-name">{product.name}</h1>
@@ -113,7 +125,7 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        {/* 2. DASHBOARD DE DESTAQUES */}
+        {/* 2. DASHBOARD DE DESTAQUES (Performance e Tecnologia) */}
         <section className="pd-highlights-section">
           <div className="section-title-premium">
             <Activity size={24} />
@@ -151,7 +163,7 @@ const ProductDetail = () => {
           </div>
         </section>
 
-        {/* 3. FICHA TÉCNICA */}
+        {/* 3. FICHA TÉCNICA (Listagem Dinâmica de Especificações) */}
         <section className="pd-technical-section">
           <div className="section-title-premium">
             <ClipboardList size={24} />
@@ -170,7 +182,7 @@ const ProductDetail = () => {
           </div>
         </section>
 
-        {/* 4. CARROSSEL DE SUGESTÕES (MAIS PROFISSIONAL) */}
+        {/* 4. CARROSSEL DE SUGESTÕES (Motos Relacionadas) */}
         <section className="related-section-carousel">
           <div className="section-title-premium">
             <Heart size={24} className="icon-red" />

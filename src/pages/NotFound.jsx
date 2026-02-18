@@ -3,6 +3,10 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Ghost, ArrowLeft } from 'lucide-react';
 
+/**
+ * Página 404 - Não Encontrada
+ * Exibida automaticamente quando o usuário tenta acessar uma rota que não existe.
+ */
 const NotFound = () => {
   return (
     <div className="container" style={{ 
@@ -45,6 +49,7 @@ const NotFound = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.7 }}
       >
+        {/* Botão para retornar à página inicial com segurança */}
         <Link to="/" className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
           <ArrowLeft size={20} /> Voltar para o Início
         </Link>

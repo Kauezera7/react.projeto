@@ -1,3 +1,10 @@
+/**
+ * Cadastro de Consultores de Vendas
+ * Cada objeto define um perfil de vendedor que será exibido na listagem 
+ * e terá sua própria página estilo "Linktree".
+ * 
+ * O campo 'id' deve ser único e amigável para URLs (ex: nome-sobrenome).
+ */
 export const sellersData = [
     {
         id: "carlos-junior",
