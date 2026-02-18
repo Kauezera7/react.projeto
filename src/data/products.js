@@ -107,31 +107,5 @@ export const productsData = [
             { icon: "ShieldCheck", text: "Silenciosa" }
         ],
         specifications: { "Motor": "2000W", "Autonomia": "60km" }
-    },
-    {
-        id: 6,
-        slug: "storm-125",
-        name: "Shineray Storm",
-        category: "motocicleta",
-        price: "R$ 11.490,00",
-        installment: "12x de R$ 957,50",
-        badge: "Destaque",
-        brand: "Shineray",
-        fuel: "Gasolina",
-        colors: ["Vermelho", "Preto"],
-        mainImage: "/img/Storm.webp",
-        highlights: [
-            { icon: "Bike", text: "Econômica" },
-            { icon: "Settings", text: "4 Marchas" },
-            { icon: "ShieldCheck", text: "Robusta" }
-        ],
-        thumbnails: ["/img/Storm.webp", "/img/URBAN-150-EFI.webp"],
-        specifications: {
-            "Cilindrada": "125 cc",
-            "Potência": "10 cv",
-            "Câmbio": "4 Marchas",
-            "Partida": "Elétrica e Pedal",
-            "Tanque": "4,5 Litros"
-        },
     }
 ];
