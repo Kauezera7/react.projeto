@@ -1,4 +1,5 @@
 # 🏍️ Shineray Colombo - Catálogo Digital (Versão React)
+esta no vercel react-projeto-dusky.vercel.app
 
 Este projeto é um catálogo digital moderno e de alta performance para a concessionária Shineray Colombo, desenvolvido com **React + Vite**. O sistema foi projetado para ser modular, fácil de manter e otimizado para conversão de vendas via WhatsApp.
 
